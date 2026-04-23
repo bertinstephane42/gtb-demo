@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCADA GTB - Gestion Technique du Bâtiment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <h1>🖥️ SCADA GTB</h1>
+            <span class="subtitle">Gestion Technique du Bâtiment</span>
+        </div>
+        <div id="alarmBanner" class="alarm-banner hidden">
+            <span class="alarm-banner-icon">🚨</span>
+            <span id="alarmBannerMessage" class="alarm-banner-message"></span>
+            <span class="alarm-banner-count">(<span id="alarmBannerCount">0</span>)</span>
+            <button id="dismissBanner" class="alarm-banner-dismiss">×</button>
+        </div>
+        <div class="header-right">
+            <div id="userSection" class="user-section" style="display: none;">
+                <span id="userDisplay"></span>
+                <button id="logoutBtn" class="btn-small btn-logout">🚪</button>
+            </div>
+            <div class="status-bar">
+                <span id="connectionStatus" class="status-indicator online">● CONNECTÉ</span>
+                <span class="status-sep">|</span>
+                <span id="lastUpdate">--:--:--</span>
+                <span class="status-sep">|</span>
+                <span id="pollStatus" class="status-ok">Polling 1s</span>
+            </div>
+        </div>
+    </header>
+    
+    <nav class="nav-tabs">
+        <button class="tab-btn active" data-view="dashboard">📊 Dashboard</button>
+        <button class="tab-btn" data-view="et1">🏢 Étage 1</button>
+        <button class="tab-btn" data-view="et2">🏢 Étage 2</button>
+        <button class="tab-btn" data-view="rdc">🏠 RDC</button>
+        <button class="tab-btn" data-view="alarms">🚨 Alarmes</button>
+        <button class="tab-btn" data-view="scenarios">⚙️ Scénarios</button>
+        <button class="tab-btn" data-view="users">👥 Users</button>
+        <button class="tab-btn" data-view="control">🎛️ Control</button>
+        <button class="tab-btn" data-view="protocols">📡 Protocoles</button>
+        <button class="tab-btn" data-view="events">📋 Événements</button>
+        <button class="tab-btn" data-view="graphs">📈 Graphiques</button>
+    </nav>
+    
+    <div class="toolbar">
+        <button id="refreshBtn" class="btn btn-primary">🔄 Rafraîchir</button>
+        <button id="togglePolling" class="btn btn-secondary">⏸️ Pause</button>
+        <button id="ackAlarm" class="btn btn-warning">✓ Acquitter Alarmes</button>
+    </div>
+    
+    <main class="main-content">
+        <!-- DASHBOARD VIEW -->
+        <section id="view-dashboard" class="view-section active">
+            <div class="stats-panel">
+                <div class="stat-card">
+                    <div class="stat-icon">🟢</div>
+                    <div class="stat-label">Équipements</div>
+                    <div class="stat-value" id="deviceCount">-</div>
+                    <div class="stat-detail" id="deviceGood">- OK</div>
+                </div>
+                <div class="stat-card alarm-critique">
+                    <div class="stat-icon">🚨</div>
+                    <div class="stat-label">Alarmes Critique</div>
+                    <div class="stat-value" id="alarmHH">-</div>
+                    <div class="stat-detail">HH</div>
+                </div>
+                <div class="stat-card alarm-warning">
+                    <div class="stat-icon">⚠️</div>
+                    <div class="stat-label">Alarmes Warning</div>
+                    <div class="stat-value" id="alarmH">-</div>
+                    <div class="stat-detail">H/L</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-label">Puissance Totale</div>
+                    <div class="stat-value" id="totalPower">-</div>
+                    <div class="stat-unit">kW</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌡️</div>
+                    <div class="stat-label">Confort Moy.</div>
+                    <div class="stat-value" id="avgTemp">-</div>
+                    <div class="stat-unit">°C</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🫧</div>
+                    <div class="stat-label">CO2 Moyen</div>
+                    <div class="stat-value" id="avgCO2">-</div>
+                    <div class="stat-unit">ppm</div>
+                </div>
+            </div>
+            
+            <div class="category-section">
+                <h3 class="section-title">🏭 CVC - Chauffage Ventilation Climatisation</h3>
+                <div class="devices-grid" id="devices-CVC"></div>
+            </div>
+            
+            <div class="category-section">
+                <h3 class="section-title">⚡ Énergie</h3>
+                <div class="devices-grid" id="devices-ENERGIE"></div>
+            </div>
+            
+            <div class="category-section">
+                <h3 class="section-title">💡 Éclairage</h3>
+                <div class="devices-grid" id="devices-ECLAIRAGE"></div>
+            </div>
+        </section>
+        
+        <!-- ETAGE 1 VIEW -->
+        <section id="view-et1" class="view-section">
+            <h2 class="view-title">🏢 Étage 1 - Bureaux</h2>
+            <div class="floor-synoptique">
+                <div class="zone zone-active" data-device="VAV-201">
+                    <span class="zone-name">Bureau 201</span>
+                    <span class="zone-value" id="val-VAV-201">--</span>
+                </div>
+                <div class="zone zone-active" data-device="VAV-202">
+                    <span class="zone-name">Bureau 202</span>
+                    <span class="zone-value" id="val-VAV-202">--</span>
+                </div>
+                <div class="zone zone-active" data-device="VAV-203">
+                    <span class="zone-name">Bureau 203</span>
+                    <span class="zone-value" id="val-VAV-203">--</span>
+                </div>
+                <div class="zone zone-alarm" data-device="CO2-201">
+                    <span class="zone-name">CO2 201</span>
+                    <span class="zone-value" id="val-CO2-201">--</span>
+                </div>
+                <div class="zone" data-device="LUM-201">
+                    <span class="zone-name">Lumière 201</span>
+                    <span class="zone-value" id="val-LUM-201">--</span>
+                </div>
+                <div class="zone zone-active" data-device="PWR-ETAGE1">
+                    <span class="zone-name">Puissance</span>
+                    <span class="zone-value" id="val-PWR-ETAGE1">--</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ETAGE 2 VIEW -->
+        <section id="view-et2" class="view-section">
+            <h2 class="view-title">🏢 Étage 2 - Bureaux</h2>
+            <div class="floor-synoptique">
+                <div class="zone" data-device="VAV-203">
+                    <span class="zone-name">Bureau 203</span>
+                    <span class="zone-value" id="val-VAV-203">--</span>
+                </div>
+                <div class="zone" data-device="LUM-203">
+                    <span class="zone-name">Lumière 203</span>
+                    <span class="zone-value" id="val-LUM-203">--</span>
+                </div>
+                <div class="zone" data-device="PWR-ETAGE2">
+                    <span class="zone-name">Puissance</span>
+                    <span class="zone-value" id="val-PWR-ETAGE2">--</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- RDC VIEW -->
+        <section id="view-rdc" class="view-section">
+            <h2 class="view-title">🏠 Rez-de-Chaussée - Technique</h2>
+            <div class="floor-synoptique rdc">
+                <div class="zone tech" data-device="CTA-01">
+                    <span class="zone-name">CTA-01</span>
+                    <span class="zone-value" id="val-CTA-01">--</span>
+                </div>
+                <div class="zone tech" data-device="GRP-FROID">
+                    <span class="zone-name">Groupe Froid</span>
+                    <span class="zone-value" id="val-GRP-FROID">--</span>
+                </div>
+                <div class="zone tech" data-device="CHAUDIERE">
+                    <span class="zone-name">Chaudière</span>
+                    <span class="zone-value" id="val-CHAUDIERE">--</span>
+                </div>
+                <div class="zone" data-device="PWR-TOTAL">
+                    <span class="zone-name">Puissance Totale</span>
+                    <span class="zone-value" id="val-PWR-TOTAL">--</span>
+                </div>
+                <div class="zone security" data-device="LEAK-01">
+                    <span class="zone-name">Fuite Eau</span>
+                    <span class="zone-value" id="val-LEAK-01">--</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- EVENTS VIEW -->
+        <section id="view-events" class="view-section">
+            <h2 class="view-title">📋 Journal des Événements</h2>
+            <div class="events-panel">
+                <table class="events-table">
+                    <thead>
+                        <tr>
+                            <th>Horodatage</th>
+                            <th>Type</th>
+                            <th>Message</th>
+                            <th>Sévérité</th>
+                        </tr>
+                    </thead>
+                    <tbody id="eventsBody">
+                        <tr><td colspan="4">Aucun événement</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- GRAPHS VIEW -->
+        <section id="view-graphs" class="view-section">
+            <h2 class="view-title">📈 Graphiques Temps Réel</h2>
+            <div class="graphs-controls">
+                <label>Période:</label>
+                <select id="graphPeriod" class="select-input">
+                    <option value="3600">1 heure</option>
+                    <option value="86400" selected>24 heures</option>
+                    <option value="604800">7 jours</option>
+                </select>
+                <label>Équipements:</label>
+                <select id="graphDevices" class="select-input" multiple size="4">
+                    <option value="PWR-TOTAL">Puissance Totale</option>
+                    <option value="VAV-201">VAV 201</option>
+                    <option value="VAV-202">VAV 202</option>
+                    <option value="CO2-201">CO2 201</option>
+                    <option value="CO2-202">CO2 202</option>
+                    <option value="CTA-01">CTA-01</option>
+                </select>
+                <button id="loadGraph" class="btn btn-primary">Charger</button>
+                <button id="exportGraph" class="btn btn-secondary">📥 Exporter</button>
+            </div>
+            <div class="graph-container">
+                <canvas id="dataCanvas"></canvas>
+            </div>
+        </section>
+        
+        <!-- ALARMS VIEW -->
+        <section id="view-alarms" class="view-section">
+            <h2 class="view-title">🚨 Gestion des Alarmes</h2>
+            <div class="alarms-toolbar">
+                <button id="refreshAlarms" class="btn btn-primary">🔄 Rafraîchir</button>
+                <select id="filterSeverity" class="select-input">
+                    <option value="">Toutes sévérités</option>
+                    <option value="HH">Critique (HH)</option>
+                    <option value="H">Haute (H)</option>
+                    <option value="L">Basse (L)</option>
+                    <option value="LL">Critique Basse (LL)</option>
+                </select>
+                <button id="ackSelectedAlarms" class="btn btn-warning">✓ Acquitter</button>
+                <button id="shelveSelectedAlarms" class="btn btn-secondary">⏱️ Temporiser</button>
+            </div>
+            <div class="alarm-summary">
+                <div class="alarm-count alarm-hh">HH: <span id="countHH">0</span></div>
+                <div class="alarm-count alarm-h">H: <span id="countH">0</span></div>
+                <div class="alarm-count alarm-l">L: <span id="countL">0</span></div>
+                <div class="alarm-count alarm-ll">LL: <span id="countLL">0</span></div>
+                <div class="alarm-count alarm-normal">Normal: <span id="countNormal">0</span></div>
+                <div id="floorCounts" class="floor-summary"></div>
+            </div>
+            <div class="alarms-table-container">
+                <table class="alarms-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAllAlarms"></th>
+                            <th>ID</th>
+                            <th>Équipement</th>
+                            <th>Message</th>
+                            <th>Sévérité</th>
+                            <th>Valeur</th>
+                            <th>Seuil</th>
+                            <th>Horodatage</th>
+                            <th>Qualité</th>
+                            <th>ACK</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alarmsBody">
+                        <tr><td colspan="11">Aucune alarme</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- SCENARIOS VIEW -->
+        <section id="view-scenarios" class="view-section">
+            <h2 class="view-title">⚙️ Scénarios d'Automation</h2>
+            <div class="scenarios-toolbar">
+                <button id="refreshScenarios" class="btn btn-primary">🔄 Rafraîchir</button>
+                <button id="runScenarios" class="btn btn-success">▶️ Exécuter</button>
+                <button id="addScenario" class="btn btn-secondary">➕ Ajouter</button>
+            </div>
+            <div class="scenarios-grid" id="scenariosList">
+                <!-- Scénarios loaded via JS -->
+            </div>
+        </section>
+        
+        <!-- CONTROL VIEW -->
+        <section id="view-control" class="view-section">
+            <h2 class="view-title">🎛️ Panneau de Contrôle</h2>
+            <div class="control-toolbar">
+                <button id="turnAllOn" class="btn btn-success">✅ Tout Allumer</button>
+                <button id="turnAllOff" class="btn btn-danger">⛔ Tout Éteindre</button>
+                <button id="setAllAuto" class="btn btn-primary">🔄 Tout Auto</button>
+            </div>
+            <div class="control-grid" id="controlList">
+                <!-- Devices loaded via JS -->
+            </div>
+        </section>
+        
+        <!-- PROTOCOLS VIEW -->
+        <section id="view-protocols" class="view-section">
+            <h2 class="view-title">📡 Logs Protocoles</h2>
+            <div class="protocols-toolbar">
+                <button id="refreshProtocols" class="btn btn-primary">🔄 Rafraîchir</button>
+                <select id="protocolFilter" class="select-input">
+                    <option value="">Tous protocoles</option>
+                    <option value="BACNET">BACnet</option>
+                    <option value="KNX">KNX</option>
+                    <option value="MQTT">MQTT</option>
+                </select>
+                <button id="clearProtocols" class="btn btn-danger">🗑️ Purger</button>
+                <button id="exportProtocols" class="btn btn-secondary">📥 Exporter</button>
+            </div>
+            <div class="protocols-summary">
+                <span class="protocol-count">BACnet: <span id="countBACNET">0</span></span>
+                <span class="protocol-count">KNX: <span id="countKNX">0</span></span>
+                <span class="protocol-count">MQTT: <span id="countMQTT">0</span></span>
+            </div>
+            <div class="protocols-log" id="protocolsLog">
+                <pre></pre>
+            </div>
+        </section>
+    </main>
+    
+    <!-- LOGIN MODAL -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content modal-login">
+            <div class="modal-header">
+                <h2>🔐 Connexion SCADA</h2>
+                <button class="close-btn" id="closeLoginModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Utilisateur</label>
+                    <input type="text" id="loginUsername" placeholder="admin">
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••">
+                </div>
+                <div id="loginError" class="login-error" style="display: none;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="doLogin">Se connecter</button>
+            </div>
+        </section>
+        
+        <!-- USERS VIEW -->
+        <section id="view-users" class="view-section">
+            <h2 class="view-title">👥 Gestion des Utilisateurs</h2>
+            <div class="users-toolbar">
+                <button id="refreshUsers" class="btn btn-primary">🔄 Rafraîchir</button>
+                <button id="addUser" class="btn btn-success">➕ Ajouter User</button>
+            </div>
+            <div class="users-table-container">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Rôle</th>
+                            <th>Email</th>
+                            <th>Statut</th>
+                            <th>Dernière connexion</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersBody">
+                        <tr><td colspan="7">Aucun utilisateur</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- EDIT MODAL -->
+        <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Modifier Équipement</h2>
+                <button class="close-btn" id="closeModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="device-info-panel" id="deviceInfoPanel">
+                    <div class="info-row">
+                        <span class="info-label">Protocol:</span>
+                        <span class="info-value" id="infoProtocol">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Adresse:</span>
+                        <span class="info-value" id="infoAddr">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Description:</span>
+                        <span class="info-value" id="infoDesc">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Alarme:</span>
+                        <span class="info-value alarm-badge" id="infoAlarm">-</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Valeur (<span id="valueUnit"></span>)</label>
+                    <input type="number" id="editValue" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>État</label>
+                    <select id="editState">
+                        <option value="AUTO">Auto</option>
+                        <option value="MANU">Manuel</option>
+                        <option value="OFF">Arrêt</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="cancelEdit">Annuler</button>
+                <button class="btn btn-save" id="saveEdit">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TOAST NOTIFICATIONS -->
+    <div class="toast" id="toast"></div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
