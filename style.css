@@ -643,13 +643,23 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
     align-items: center;
     justify-content: center;
 }
 
 .modal.active {
+    display: flex;
+    z-index: 10000;
+}
+
+/* LOGIN MODAL SPECIFIC */
+#loginModal {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+#loginModal.active {
     display: flex;
 }
 
@@ -1032,6 +1042,24 @@ body {
 .users-table {
     width: 100%;
     border-collapse: collapse;
+    display: table;
+    visibility: visible;
+    opacity: 1;
+}
+
+.users-table tbody,
+.users-table thead {
+    display: table-row-group;
+}
+
+.users-table tbody tr,
+.users-table thead tr {
+    display: table-row;
+}
+
+.users-table thead th,
+.users-table tbody td {
+    display: table-cell;
 }
 
 .users-table th,
