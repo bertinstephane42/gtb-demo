@@ -1,0 +1,197 @@
+[
+    {
+        "id": "SCN-DELEST",
+        "name": "D\u00e9lestage Automatique",
+        "description": "Coupe \u00e9clairage si puissance > 70kW",
+        "enabled": true,
+        "schedule": {
+            "type": "always_on",
+            "days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "start": "00:00",
+            "end": "23:59"
+        },
+        "conditions": [
+            {
+                "device": "PWR-TOTAL",
+                "operator": ">",
+                "value": 70,
+                "unit": "kW"
+            }
+        ],
+        "actions": [
+            {
+                "device": "LUM-201",
+                "value": 0,
+                "state": "OFF"
+            },
+            {
+                "device": "LUM-202",
+                "value": 0,
+                "state": "OFF"
+            },
+            {
+                "device": "LUM-203",
+                "value": 0,
+                "state": "OFF"
+            }
+        ],
+        "priority": 10,
+        "last_triggered": 1776930816,
+        "trigger_count": 2889
+    },
+    {
+        "id": "SCN-ECO",
+        "name": "Mode \u00c9conomique",
+        "description": "R\u00e9duit puissance si co\u00fbt horaire \u00e9lev\u00e9 (pointe 12h-14h, 18h-20h)",
+        "enabled": false,
+        "schedule": {
+            "type": "hourly",
+            "hours": [
+                12,
+                13,
+                18,
+                19
+            ],
+            "days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        "conditions": [],
+        "actions": [
+            {
+                "device": "CTA-01",
+                "value": 40,
+                "state": "AUTO"
+            },
+            {
+                "device": "GRP-FROID",
+                "value": 10,
+                "state": "AUTO"
+            }
+        ],
+        "priority": 8,
+        "last_triggered": null,
+        "trigger_count": 0
+    },
+    {
+        "id": "SCN-NUIT",
+        "name": "Extinction Nuit",
+        "description": "\u00c9teint \u00e9clairage et r\u00e9duit CTA apr\u00e8s 20h en semaine",
+        "enabled": false,
+        "schedule": {
+            "type": "weekly",
+            "days": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "start": "20:00",
+            "end": "06:00"
+        },
+        "conditions": [],
+        "actions": [
+            {
+                "device": "LUM-201",
+                "value": 0,
+                "state": "OFF"
+            },
+            {
+                "device": "LUM-202",
+                "value": 0,
+                "state": "OFF"
+            },
+            {
+                "device": "LUM-203",
+                "value": 0,
+                "state": "OFF"
+            },
+            {
+                "device": "CTA-01",
+                "value": 30,
+                "state": "OFF"
+            }
+        ],
+        "priority": 5,
+        "last_triggered": null,
+        "trigger_count": 0
+    },
+    {
+        "id": "SCN-CONGES",
+        "name": "Mode Cong\u00e9s",
+        "description": "Ferme stores et r\u00e9duit ventilation le weekend",
+        "enabled": false,
+        "schedule": {
+            "type": "weekly",
+            "days": [
+                0,
+                6
+            ],
+            "start": "00:00",
+            "end": "23:59"
+        },
+        "conditions": [],
+        "actions": [
+            {
+                "device": "CTA-01",
+                "value": 50,
+                "state": "AUTO"
+            }
+        ],
+        "priority": 3,
+        "last_triggered": null,
+        "trigger_count": 0
+    },
+    {
+        "id": "SCN-VACANCES",
+        "name": "Mode Vacances",
+        "description": "R\u00e9duit chauffage et \u00e9teint \u00e9clairage pendant absences",
+        "enabled": false,
+        "schedule": {
+            "type": "date_range",
+            "start_date": "2024-07-01",
+            "end_date": "2024-08-31",
+            "start": "00:00",
+            "end": "23:59"
+        },
+        "conditions": [],
+        "actions": [
+            {
+                "device": "CTA-01",
+                "value": 20,
+                "state": "AUTO"
+            },
+            {
+                "device": "LUM-201",
+                "value": 0,
+                "state": "OFF"
+            },
+            {
+                "device": "LUM-202",
+                "value": 0,
+                "state": "OFF"
+            },
+            {
+                "device": "LUM-203",
+                "value": 0,
+                "state": "OFF"
+            }
+        ],
+        "priority": 1,
+        "last_triggered": null,
+        "trigger_count": 0
+    }
+]

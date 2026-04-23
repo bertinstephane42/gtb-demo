@@ -1,0 +1,35 @@
+[
+    {
+        "id": "USR-001",
+        "username": "admin",
+        "password_hash": "$2y$10$92IXUNpkjO0rOQ5bMi3YCE31YiwhJHGpqnGwtGrwKA0xLEtbFIqFe",
+        "role": "admin",
+        "email": "admin@gtb.local",
+        "name": "Administrateur",
+        "created_at": 1704067200,
+        "last_login": 1776930413,
+        "active": true
+    },
+    {
+        "id": "USR-002",
+        "username": "operateur",
+        "password_hash": "$2y$10$92IXUNpkjO0rOQ5bMi3YCE31YiwhJHGpqnGwtGrwKA0xLEtbFIqFe",
+        "role": "operator",
+        "email": "ops@gtb.local",
+        "name": "Op\u00e9rateur",
+        "created_at": 1704067200,
+        "last_login": null,
+        "active": true
+    },
+    {
+        "id": "USR-003",
+        "username": "visiteur",
+        "password_hash": "$2y$10$92IXUNpkjO0rOQ5bMi3YCE31YiwhJHGpqnGwtGrwKA0xLEtbFIqFe",
+        "role": "viewer",
+        "email": "viewer@gtb.local",
+        "name": "Visiteur",
+        "created_at": 1704067200,
+        "last_login": null,
+        "active": true
+    }
+]

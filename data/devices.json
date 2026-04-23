@@ -1,0 +1,506 @@
+[
+    {
+        "id": "CTA-01",
+        "name": "CTA-01",
+        "description": "Centrale Traitement Air - Bureau",
+        "protocol": "bacnet",
+        "instance": 101,
+        "addr": "10.0.1.10",
+        "floor": "RDC",
+        "category": "CVC",
+        "tag": {
+            "type": "AO",
+            "value": 0,
+            "unit": "%",
+            "min": 0,
+            "max": 100,
+            "alarms": {
+                "HH": 95,
+                "H": 85,
+                "L": 20,
+                "LL": 10
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "MANU",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "VAV-201",
+        "name": "VAV-201",
+        "description": "VAV Bureau 201",
+        "protocol": "bacnet",
+        "instance": 201,
+        "addr": "10.0.1.20",
+        "floor": "ET1",
+        "category": "CVC",
+        "tag": {
+            "type": "AO",
+            "value": 24.77999999999999,
+            "unit": "\u00b0C",
+            "min": 15,
+            "max": 30,
+            "alarms": {
+                "HH": 28,
+                "H": 26,
+                "L": 18,
+                "LL": 16
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "NORMAL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "VAV-202",
+        "name": "VAV-202",
+        "description": "VAV Bureau 202",
+        "protocol": "bacnet",
+        "instance": 202,
+        "addr": "10.0.1.20",
+        "floor": "ET1",
+        "category": "CVC",
+        "tag": {
+            "type": "AO",
+            "value": 15.609999999999994,
+            "unit": "\u00b0C",
+            "min": 15,
+            "max": 30,
+            "alarms": {
+                "HH": 28,
+                "H": 26,
+                "L": 18,
+                "LL": 16
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "OFF",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "VAV-203",
+        "name": "VAV-203",
+        "description": "VAV Bureau 203",
+        "protocol": "bacnet",
+        "instance": 203,
+        "addr": "10.0.1.20",
+        "floor": "ET2",
+        "category": "CVC",
+        "tag": {
+            "type": "AO",
+            "value": 15.609999999999994,
+            "unit": "\u00b0C",
+            "min": 15,
+            "max": 30,
+            "alarms": {
+                "HH": 28,
+                "H": 26,
+                "L": 18,
+                "LL": 16
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "GRP-FROID",
+        "name": "GRP-FROID",
+        "description": "Groupe Froid 1",
+        "protocol": "bacnet",
+        "instance": 301,
+        "addr": "10.0.1.30",
+        "floor": "LOCAL",
+        "category": "CVC",
+        "tag": {
+            "type": "AO",
+            "value": 7.799999999999992,
+            "unit": "\u00b0C",
+            "min": 5,
+            "max": 15,
+            "alarms": {
+                "HH": 12,
+                "H": 10,
+                "L": 6,
+                "LL": 5
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "NORMAL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "CHAUDIERE",
+        "name": "CHAUDIERE",
+        "description": "Chaudi\u00e8re Gaz",
+        "protocol": "mqtt",
+        "instance": 401,
+        "addr": "10.0.1.31",
+        "floor": "LOCAL",
+        "category": "CVC",
+        "tag": {
+            "type": "AO",
+            "value": 20.609999999999996,
+            "unit": "\u00b0C",
+            "min": 20,
+            "max": 80,
+            "alarms": {
+                "HH": 75,
+                "H": 65,
+                "L": 30,
+                "LL": 20
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "L",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "PWR-TOTAL",
+        "name": "PWR-TOTAL",
+        "description": "Puissance Totale B\u00e2timent",
+        "protocol": "bacnet",
+        "instance": 501,
+        "addr": "10.0.1.40",
+        "floor": "TABLEAU",
+        "category": "ENERGIE",
+        "tag": {
+            "type": "AI",
+            "value": 143.45000000000016,
+            "unit": "kW",
+            "min": 0,
+            "max": 150,
+            "alarms": {
+                "HH": 120,
+                "H": 100,
+                "L": 10,
+                "LL": 5
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "HH",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "PWR-ETAGE1",
+        "name": "PWR-ETAGE1",
+        "description": "Puissance \u00c9tage 1",
+        "protocol": "bacnet",
+        "instance": 502,
+        "addr": "10.0.1.40",
+        "floor": "ET1",
+        "category": "ENERGIE",
+        "tag": {
+            "type": "AI",
+            "value": 44.36999999999987,
+            "unit": "kW",
+            "min": 0,
+            "max": 50,
+            "alarms": {
+                "HH": 45,
+                "H": 40,
+                "L": 5,
+                "LL": 2
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "H",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "PWR-ETAGE2",
+        "name": "PWR-ETAGE2",
+        "description": "Puissance \u00c9tage 2",
+        "protocol": "bacnet",
+        "instance": 503,
+        "addr": "10.0.1.40",
+        "floor": "ET2",
+        "category": "ENERGIE",
+        "tag": {
+            "type": "AI",
+            "value": 43.44999999999989,
+            "unit": "kW",
+            "min": 0,
+            "max": 50,
+            "alarms": {
+                "HH": 45,
+                "H": 40,
+                "L": 5,
+                "LL": 2
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "H",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "CO2-201",
+        "name": "CO2-201",
+        "description": "Capteur CO2 Bureau 201",
+        "protocol": "bacnet",
+        "instance": 601,
+        "addr": "10.0.1.50",
+        "floor": "ET1",
+        "category": "CONFORT",
+        "tag": {
+            "type": "AI",
+            "value": 1.2600000000000005,
+            "unit": "ppm",
+            "min": 0,
+            "max": 2000,
+            "alarms": {
+                "HH": 1500,
+                "H": 1000,
+                "L": 400,
+                "LL": 200
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "CO2-202",
+        "name": "CO2-202",
+        "description": "Capteur CO2 Bureau 202",
+        "protocol": "bacnet",
+        "instance": 602,
+        "addr": "10.0.1.50",
+        "floor": "ET1",
+        "category": "CONFORT",
+        "tag": {
+            "type": "AI",
+            "value": 1.2600000000000005,
+            "unit": "ppm",
+            "min": 0,
+            "max": 2000,
+            "alarms": {
+                "HH": 1500,
+                "H": 1000,
+                "L": 400,
+                "LL": 200
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "OCC-201",
+        "name": "OCC-201",
+        "description": "D\u00e9tection Pr\u00e9sence Bureau 201",
+        "protocol": "bacnet",
+        "instance": 701,
+        "addr": "10.0.1.51",
+        "floor": "ET1",
+        "category": "CONFORT",
+        "tag": {
+            "type": "BI",
+            "value": 11,
+            "unit": "bool",
+            "min": 0,
+            "max": 1,
+            "alarms": {
+                "HH": 1,
+                "H": 1,
+                "L": 0,
+                "LL": 0
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "HH",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "OCC-202",
+        "name": "OCC-202",
+        "description": "D\u00e9tection Pr\u00e9sence Bureau 202",
+        "protocol": "bacnet",
+        "instance": 702,
+        "addr": "10.0.1.51",
+        "floor": "ET1",
+        "category": "CONFORT",
+        "tag": {
+            "type": "BI",
+            "value": 0,
+            "unit": "bool",
+            "min": 0,
+            "max": 1,
+            "alarms": {
+                "HH": 1,
+                "H": 1,
+                "L": 0,
+                "LL": 0
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "AUTO",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "LUM-201",
+        "name": "LUM-201",
+        "description": "\u00c9clairage Bureau 201",
+        "protocol": "knx",
+        "instance": 801,
+        "addr": "1\/1\/1",
+        "floor": "ET1",
+        "category": "ECLAIRAGE",
+        "tag": {
+            "type": "AO",
+            "value": 0,
+            "unit": "%",
+            "min": 0,
+            "max": 100,
+            "alarms": {
+                "HH": 100,
+                "H": 100,
+                "L": 0,
+                "LL": 0
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "OFF",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "LUM-202",
+        "name": "LUM-202",
+        "description": "\u00c9clairage Bureau 202",
+        "protocol": "knx",
+        "instance": 802,
+        "addr": "1\/1\/2",
+        "floor": "ET1",
+        "category": "ECLAIRAGE",
+        "tag": {
+            "type": "AO",
+            "value": 0,
+            "unit": "%",
+            "min": 0,
+            "max": 100,
+            "alarms": {
+                "HH": 100,
+                "H": 100,
+                "L": 0,
+                "LL": 0
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "OFF",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "LUM-203",
+        "name": "LUM-203",
+        "description": "\u00c9clairage Bureau 203",
+        "protocol": "knx",
+        "instance": 803,
+        "addr": "1\/1\/3",
+        "floor": "ET2",
+        "category": "ECLAIRAGE",
+        "tag": {
+            "type": "AO",
+            "value": 0,
+            "unit": "%",
+            "min": 0,
+            "max": 100,
+            "alarms": {
+                "HH": 100,
+                "H": 100,
+                "L": 0,
+                "LL": 0
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "OFF",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "LEAK-01",
+        "name": "LEAK-01",
+        "description": "D\u00e9tection Fuite Eau",
+        "protocol": "bacnet",
+        "instance": 901,
+        "addr": "10.0.1.60",
+        "floor": "LOCAL",
+        "category": "SECURITE",
+        "tag": {
+            "type": "BI",
+            "value": 0,
+            "unit": "bool",
+            "min": 0,
+            "max": 1,
+            "alarms": {
+                "HH": 1,
+                "H": 1,
+                "L": 0,
+                "LL": 0
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "OFF",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    },
+    {
+        "id": "CTA-01",
+        "name": "CTA-01",
+        "description": "Centrale Traitement Air - Bureau",
+        "protocol": "bacnet",
+        "instance": 101,
+        "addr": "10.0.1.10",
+        "floor": "RDC",
+        "category": "CVC",
+        "tag": {
+            "type": "AO",
+            "value": 0,
+            "unit": "%",
+            "min": 0,
+            "max": 100,
+            "alarms": {
+                "HH": 95,
+                "H": 85,
+                "L": 20,
+                "LL": 10
+            },
+            "quality": "GOOD",
+            "ts": 1776930816
+        },
+        "state": "MANU",
+        "alarm": "LL",
+        "lastHistorize": 1776930816
+    }
+]
