@@ -21,11 +21,11 @@
                 "LL": 10
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
-        "state": "MANU",
+        "state": "AUTO",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "VAV-201",
@@ -49,11 +49,11 @@
                 "LL": 16
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
         "alarm": "NORMAL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "VAV-202",
@@ -77,11 +77,11 @@
                 "LL": 16
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
-        "state": "OFF",
+        "state": "AUTO",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "VAV-203",
@@ -105,11 +105,11 @@
                 "LL": 16
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "GRP-FROID",
@@ -133,11 +133,11 @@
                 "LL": 5
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
         "alarm": "NORMAL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "CHAUDIERE",
@@ -161,11 +161,11 @@
                 "LL": 20
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
         "alarm": "L",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "PWR-TOTAL",
@@ -178,7 +178,7 @@
         "category": "ENERGIE",
         "tag": {
             "type": "AI",
-            "value": 143.45000000000016,
+            "value": 148.24000000000117,
             "unit": "kW",
             "min": 0,
             "max": 150,
@@ -189,11 +189,11 @@
                 "LL": 5
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
         "alarm": "HH",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "PWR-ETAGE1",
@@ -206,7 +206,7 @@
         "category": "ENERGIE",
         "tag": {
             "type": "AI",
-            "value": 44.36999999999987,
+            "value": 49.15999999999963,
             "unit": "kW",
             "min": 0,
             "max": 50,
@@ -217,11 +217,11 @@
                 "LL": 2
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
-        "alarm": "H",
-        "lastHistorize": 1776930816
+        "alarm": "HH",
+        "lastHistorize": 1776955632
     },
     {
         "id": "PWR-ETAGE2",
@@ -234,7 +234,7 @@
         "category": "ENERGIE",
         "tag": {
             "type": "AI",
-            "value": 43.44999999999989,
+            "value": 48.23999999999965,
             "unit": "kW",
             "min": 0,
             "max": 50,
@@ -245,11 +245,11 @@
                 "LL": 2
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
-        "alarm": "H",
-        "lastHistorize": 1776930816
+        "alarm": "HH",
+        "lastHistorize": 1776955632
     },
     {
         "id": "CO2-201",
@@ -262,7 +262,7 @@
         "category": "CONFORT",
         "tag": {
             "type": "AI",
-            "value": 1.2600000000000005,
+            "value": 6.049999999999963,
             "unit": "ppm",
             "min": 0,
             "max": 2000,
@@ -273,11 +273,11 @@
                 "LL": 200
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "CO2-202",
@@ -290,7 +290,7 @@
         "category": "CONFORT",
         "tag": {
             "type": "AI",
-            "value": 1.2600000000000005,
+            "value": 6.049999999999963,
             "unit": "ppm",
             "min": 0,
             "max": 2000,
@@ -301,11 +301,11 @@
                 "LL": 200
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "OCC-201",
@@ -329,11 +329,11 @@
                 "LL": 0
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
         "alarm": "HH",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "OCC-202",
@@ -357,11 +357,11 @@
                 "LL": 0
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "AUTO",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "LUM-201",
@@ -385,11 +385,11 @@
                 "LL": 0
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "OFF",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "LUM-202",
@@ -413,11 +413,11 @@
                 "LL": 0
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "OFF",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "LUM-203",
@@ -441,11 +441,11 @@
                 "LL": 0
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
         "state": "OFF",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
         "id": "LEAK-01",
@@ -469,38 +469,38 @@
                 "LL": 0
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
-        "state": "OFF",
+        "state": "AUTO",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     },
     {
-        "id": "CTA-01",
-        "name": "CTA-01",
-        "description": "Centrale Traitement Air - Bureau",
+        "id": "LEAK-01",
+        "name": "LEAK-01",
+        "description": "D\u00e9tection Fuite Eau",
         "protocol": "bacnet",
-        "instance": 101,
-        "addr": "10.0.1.10",
-        "floor": "RDC",
-        "category": "CVC",
+        "instance": 901,
+        "addr": "10.0.1.60",
+        "floor": "LOCAL",
+        "category": "SECURITE",
         "tag": {
-            "type": "AO",
+            "type": "BI",
             "value": 0,
-            "unit": "%",
+            "unit": "bool",
             "min": 0,
-            "max": 100,
+            "max": 1,
             "alarms": {
-                "HH": 95,
-                "H": 85,
-                "L": 20,
-                "LL": 10
+                "HH": 1,
+                "H": 1,
+                "L": 0,
+                "LL": 0
             },
             "quality": "GOOD",
-            "ts": 1776930816
+            "ts": 1776955638
         },
-        "state": "MANU",
+        "state": "AUTO",
         "alarm": "LL",
-        "lastHistorize": 1776930816
+        "lastHistorize": 1776955632
     }
 ]
